@@ -1,0 +1,25 @@
+.nav {
+    color: var(--color-neutral-100);
+    background-color: var(--color-primary-500);
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 4rem;
+}
+
+.navItem {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.navItem > svg {
+    margin-right: 0.5rem;
+}
+
+.navItems {
+    display: flex;
+    gap: 1.5rem;
+}
