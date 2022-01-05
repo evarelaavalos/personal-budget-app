@@ -1,0 +1,6 @@
+.wrapper {
+    width: 90%;
+    max-width: 75rem; /* 1200px */
+    margin-left: auto;
+    margin-right: auto;
+}
