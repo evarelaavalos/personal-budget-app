@@ -3,23 +3,36 @@
     background-color: var(--color-primary-500);
 }
 
-.wrapper {
+.navItems {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 1.5rem;
     min-height: 4rem;
 }
 
 .navItem {
-    cursor: pointer;
+    
     font-weight: 500;
+    cursor: pointer;
 }
 
-.navItem > svg {
-    margin-right: 0.5rem;
+@media only screen and (max-width: 29.99em) {
+    .navItem {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+    }
 }
 
-.navItems {
-    display: flex;
-    gap: 1.5rem;
+@media only screen and (min-width: 30em) {
+    .navItem:first-child {
+        margin-right: auto;
+    }
+
+    .navItem > svg {
+        margin-right: 0.5rem;
+    }
 }
