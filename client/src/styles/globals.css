@@ -1,3 +1,25 @@
+:root {
+    --color-primary-100: #DBF1FB;
+    --color-primary-200: #A4DDF5;
+    --color-primary-300: #6CC7EF;
+    --color-primary-400: #2DAFE8;
+    --color-primary-500: #0093D4;
+    --color-primary-600: #0079AE;
+    --color-primary-700: #006591;
+    --color-primary-800: #005073;
+    --color-primary-900: #00405B;
+
+    --color-neutral-100: hsl(0, 0%, 100%);
+    --color-neutral-200: hsl(0, 0%, 90%);
+    --color-neutral-300: hsl(0, 0%, 70%);
+    --color-neutral-400: hsl(0, 0%, 60%);
+    --color-neutral-500: hsl(0, 0%, 50%);
+    --color-neutral-600: hsl(0, 0%, 40%);
+    --color-neutral-700: hsl(0, 0%, 30%);
+    --color-neutral-800: hsl(0, 0%, 10%);
+    --color-neutral-900: hsl(0, 0%, 0%);
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
 }
