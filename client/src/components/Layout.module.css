@@ -1,0 +1,10 @@
+.wrapper {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+}
+
+.wrapper main {
+    background-color: var(--color-neutral-200);
+    padding: 2rem 0;
+}
