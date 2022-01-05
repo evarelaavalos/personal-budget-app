@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import MaxWidthWrapper from './MaxWidthWrapper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -15,20 +16,28 @@ export default function Navbar() {
             <MaxWidthWrapper>
                 <ul className={styles.navItems}>
                     <li className={styles.navItem}>
-                        <FontAwesomeIcon icon={faHome} />
-                        Inicio
+                        <Link to="/">
+                            <FontAwesomeIcon icon={faHome} />
+                            Inicio
+                        </Link>
                     </li>
                     <li className={styles.navItem}>
-                        <FontAwesomeIcon icon={faPlus} />
-                        Agregar
+                        <Link to="/add">
+                            <FontAwesomeIcon icon={faPlus} />
+                            Agregar
+                        </Link>
                     </li>
                     <li className={styles.navItem}>
-                        <FontAwesomeIcon icon={faArrowCircleDown} />
-                        Ingresos
+                        <Link to="/incomes">
+                            <FontAwesomeIcon icon={faArrowCircleDown} />
+                            Ingresos
+                        </Link>
                     </li>
                     <li className={styles.navItem}>
-                        <FontAwesomeIcon icon={faArrowCircleUp} />
-                        Egresos
+                        <Link to="/expenses">
+                            <FontAwesomeIcon icon={faArrowCircleUp} />
+                            Egresos
+                        </Link>
                     </li>
                 </ul>
             </MaxWidthWrapper>
