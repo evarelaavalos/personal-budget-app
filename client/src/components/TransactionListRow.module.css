@@ -37,6 +37,10 @@
     gap: 0.5rem;
 }
 
+.metadataAmount::before {
+    content: '$\0000a0';
+}
+
 .metadataDate {
     color: var(--color-neutral-600);
     font-size: 0.875rem;
