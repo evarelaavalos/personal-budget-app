@@ -1,0 +1,19 @@
+.transactions {
+    background-color: var(--color-neutral-100);
+    border-radius: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,.1);
+}
+
+.header {
+    padding: 1.5rem;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.caption {
+    color: var(--color-neutral-600);
+    margin-top: 0.5rem;
+}

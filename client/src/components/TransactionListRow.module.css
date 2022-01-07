@@ -1,0 +1,76 @@
+.transaction {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    border-top: 1px solid var(--color-neutral-150);
+    padding: 1.5rem;
+}
+
+.transaction:hover {
+    background-color: var(--color-neutral-150);
+}
+
+.transaction > *:not(.concept) {
+    flex-shrink: 0;
+}
+
+.type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.type svg {
+    color: var(--color-primary-500);
+}
+
+.concept {
+    flex-grow: 1;
+    line-height: 1.5;
+}
+
+.metadata {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.metadataAmount::before {
+    content: '$\0000a0';
+}
+
+.metadataDate {
+    color: var(--color-neutral-600);
+    font-size: 0.875rem;
+}
+
+.options {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.options > svg {
+    cursor: pointer;
+    color: var(--color-neutral-300);
+}
+
+.options > svg:hover {
+    color: var(--color-neutral-800);
+}
+
+@media only screen and (max-width: 61.99em) {
+    .transaction {
+        flex-wrap: wrap;
+    }
+
+    .type svg {
+        font-size: 2.5rem;
+    }
+
+    .concept {
+        order: 2;
+        width: 100%;
+    }
+}
