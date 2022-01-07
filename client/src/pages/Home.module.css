@@ -1,0 +1,52 @@
+.bankSummary {
+    display: flex;
+    gap: 1.75rem;
+}
+
+.balance {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background-color: var(--color-neutral-100);
+    border-radius: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,.1);
+}
+
+.balanceTitle {
+    font-weight: 300;
+}
+
+.balanceAmountFraction {
+    margin-right: 0.25rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.balanceAmountFraction::before {
+    content: '$\0000a0';
+}
+
+.balanceAmountCents {
+    font-size: 0.875rem;
+}
+
+@media only screen and (max-width: 47.99em) {
+    .bankSummary {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (min-width: 48em) {
+    .bankSummary {
+        align-items: flex-start;
+    }
+    
+    .bankSummary > :first-child {
+        flex-basis: 15rem; /* 240px */
+    }
+    
+    .bankSummary > :last-child {
+        flex: 1;
+    }
+}

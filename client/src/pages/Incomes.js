@@ -1,9 +1,10 @@
-import React from 'react'
+import TransactionList from '../components/TransactionList';
 
 export default function Incomes() {
     return (
-        <div>
-            Incomes Page.
-        </div>
+        <TransactionList
+            title='Ingresos'
+            caption='Estos son los últimos ingresos en tu cuenta.'
+        />
     )
 }

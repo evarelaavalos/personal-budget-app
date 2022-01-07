@@ -2,12 +2,12 @@ import TransactionListRow from './TransactionListRow';
 
 import styles from './TransactionList.module.css';
 
-export default function TransactionList() {
+export default function TransactionList({ title, caption }) {
     return (
         <section className={styles.transactions}>
             <div className={styles.header}>
-                <h2 className={styles.title}>Últimos Movimientos</h2>
-                <p className={styles.caption}>Gestiona las últimas operaciones realizadas.</p>
+                <h2 className={styles.title}>{title}</h2>
+                <p className={styles.caption}>{caption}</p>
             </div>
             <TransactionListRow
                 concept='Aca compraste algo. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit provident aliquid doloribus quo mollitia praesentium architecto aut repellat rem harum.'
