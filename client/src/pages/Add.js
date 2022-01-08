@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment'
 
 import Button from '../components/Button';
 import GoBackButton from '../components/GoBackButton';
@@ -12,7 +13,7 @@ export default function Add({ types }) {
         </option>
     )));
 
-    const today = new Date().toISOString().split("T")[0];
+    const today = moment().format('YYYY-MM-DD');
 
     const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ export default function Add({ types }) {
         e.preventDefault();
         const data = new FormData(e.target);
         const concept = data.get('concept');
-        const date = new Date(data.get('date'));
+        const date = moment(data.get('date'));
         const amount = Number(data.get('amount'));
         const type = data.get('type');
 

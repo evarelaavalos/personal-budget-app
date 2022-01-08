@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Routes, Route } from "react-router-dom";
+import moment from 'moment'
 
 import Layout from './components/Layout';
 
@@ -15,28 +16,28 @@ export default function App() {
       id: 1,
       concept: 'Aca compraste algo. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit provident aliquid doloribus quo mollitia praesentium architecto aut repellat rem harum.',
       amount: 739.85,
-      date: new Date('2021-12-20'),
+      date: moment('2021-12-20'),
       type: 'income',
     },
     {
       id: 2,
       concept: 'Aca vendiste algo.',
       amount: 215.23,
-      date: new Date('2021-06-15'),
+      date: moment('2021-06-15'),
       type: 'income',
     },
     {
       id: 3,
       concept: 'Aca te depositaron algo.',
       amount: 14725.10,
-      date: new Date('2021-08-10'),
+      date: moment('2021-08-10'),
       type: 'income',
     },
     {
       id: 4,
       concept: 'Aca compraste algo.',
       amount: 8752.15,
-      date: new Date('1998-02-05'),
+      date: moment('1998-02-05'),
       type: 'expense',
     },
   ]);

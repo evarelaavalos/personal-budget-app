@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import moment from 'moment'
 
 import Button from '../components/Button';
 import GoBackButton from '../components/GoBackButton';
@@ -22,7 +23,7 @@ export default function Edit({ transactions, types }) {
         if (transaction) {
             setFormValues({
                 concept: transaction.concept,
-                date: transaction.date.toISOString().split("T")[0],
+                date: transaction.date.format('YYYY-MM-DD'),
                 amount: transaction.amount,
                 type: transaction.type,
             })
@@ -49,13 +50,13 @@ export default function Edit({ transactions, types }) {
         </option>
     )));
 
-    const today = new Date().toISOString().split("T")[0];
+    const today = moment().format('YYYY-MM-DD');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = new FormData(e.target);
         const concept = data.get('concept');
-        const date = new Date(data.get('date'));
+        const date = moment(data.get('date'));
         const amount = Number(data.get('amount'));
         const type = data.get('type');
 

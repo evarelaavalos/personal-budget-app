@@ -11,7 +11,7 @@ import {
 import styles from './TransactionListRow.module.css';
 
 export default function TransactionListRow({ id, concept, amount, date, type }) {
-    const prettyDate = date.toLocaleDateString('es-ES');
+    const prettyDate = date.format('DD/MM/YYYY');
 
     const typeElement = type === 'income' ? (
         <div className={styles.type}>
