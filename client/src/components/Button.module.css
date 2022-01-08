@@ -1,0 +1,35 @@
+.button {
+    cursor: pointer;
+    border: none;
+    margin-top: 1.125rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    font-size: 1rem;
+    color: white;
+    background-color: var(--color-primary-500);
+    border-radius: 3px;
+    min-width: 8rem;
+}
+
+.button:not(:is(.fulfilled, .rejected)):hover {
+    background-color: var(--color-primary-600);
+}
+
+.button:disabled, .button:disabled:hover {
+    cursor: auto;
+    color: var(--color-neutral-500);
+    border: 1px solid var(--color-neutral-200);
+    background-color: var(--color-neutral-150);
+}
+
+.button.fulfilled {
+    background-color: var(--color-fulfilled);
+}
+
+.button.rejected {
+    background-color: var(--color-rejected);
+}
+
+.button svg {
+    margin-right: 0.5rem;
+}
