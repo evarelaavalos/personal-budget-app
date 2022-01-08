@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../components/Button';
+import GoBackButton from '../components/GoBackButton';
 
 import styles from './Forms.module.css';
 
@@ -82,9 +83,14 @@ export default function Add({ types }) {
             <select id="type" name="type">
                 {typesElements}
             </select>
-            <Button type='submit'>
-                Agregar
-            </Button>
+            <div className={styles.buttons}>
+                <Button type='submit'>
+                    Agregar
+                </Button>
+                <GoBackButton>
+                    Volver
+                </GoBackButton>
+            </div>
         </form>
     )
 }

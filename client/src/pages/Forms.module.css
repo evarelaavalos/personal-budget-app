@@ -38,3 +38,7 @@
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
 }
+
+.buttons > :not(:last-child) {
+    margin-right: 0.5rem;
+}

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import Button from '../components/Button';
+import GoBackButton from '../components/GoBackButton';
 
 import styles from './Forms.module.css';
 
@@ -128,9 +129,14 @@ export default function Edit({ transactions, types }) {
             >
                 {typesElements}
             </select>
-            <Button type='submit'>
-                Agregar
-            </Button>
+            <div className={styles.buttons}>
+                <Button type='submit'>
+                    Agregar
+                </Button>
+                <GoBackButton>
+                    Volver
+                </GoBackButton>
+            </div>
         </form>
     )
 }
