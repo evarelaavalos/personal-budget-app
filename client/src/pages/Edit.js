@@ -1,10 +1,47 @@
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import Button from '../components/Button';
 
 import styles from './Forms.module.css';
 
-export default function Add({ types }) {
+export default function Edit({ transactions, types }) {
+    // Make use of React Hooks
+    const params = useParams();
+    const navigate = useNavigate();
+
+    // Check if exists a transaction with the given id
+    const [formValues, setFormValues] = useState({});
+    const id = Number(params.transactionId);
+
+    // Make the checks only in the first render
+    useEffect(() => {
+        const transaction = transactions.find(transaction => id === transaction.id);
+
+        if (transaction) {
+            setFormValues({
+                concept: transaction.concept,
+                date: transaction.date.toISOString().split("T")[0],
+                amount: transaction.amount,
+                type: transaction.type,
+            })
+        } else {
+            navigate('/');
+        }
+    }, []);
+
+    // Update the state when the inputs change
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
+    };
+
+    // Log the changes made by handleChange()
+    useEffect(() => {
+        console.log(formValues);
+    }, [formValues]);
+    
+    // Render every type element
     const typesElements = (types.map((type) => (
         <option value={type.name} key={type.id}>
             {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
@@ -12,8 +49,6 @@ export default function Add({ types }) {
     )));
 
     const today = new Date().toISOString().split("T")[0];
-
-    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -45,7 +80,7 @@ export default function Add({ types }) {
 
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
-            <h3 className={styles.formTitle}>Agregar Transacción</h3>
+            <h3 className={styles.formTitle}>Editar Transacción</h3>
             <label htmlFor="concept" className={styles.inputTitle}>
                 Concepto:
             </label>
@@ -54,6 +89,8 @@ export default function Add({ types }) {
                 id="concept"
                 name="concept"
                 placeholder="¿Cual es el motivo de la transacción?"
+                value={formValues.concept}
+                onChange={handleChange}
                 required
             />
             <label htmlFor="date" className={styles.inputTitle}>
@@ -64,6 +101,8 @@ export default function Add({ types }) {
                 id="date"
                 name="date"
                 defaultValue={today}
+                value={formValues.date}
+                onChange={handleChange}
                 required
             />
             <label htmlFor="amount" className={styles.inputTitle}>
@@ -74,12 +113,19 @@ export default function Add({ types }) {
                 id="amount"
                 name="amount"
                 step="any"
+                value={formValues.amount}
+                onChange={handleChange}
                 required
             />
             <label htmlFor="type" className={styles.inputTitle}>
                 Tipo:
             </label>
-            <select id="type" name="type">
+            <select
+                id="type"
+                name="type"
+                value={formValues.type}
+                disabled
+            >
                 {typesElements}
             </select>
             <Button type='submit'>

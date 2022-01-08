@@ -33,6 +33,7 @@
 
 .metadata {
     display: flex;
+    align-items: flex-end;
     flex-direction: column;
     gap: 0.5rem;
 }
@@ -72,5 +73,9 @@
     .concept {
         order: 2;
         width: 100%;
+    }
+
+    .metadata {
+        align-items: center;
     }
 }

@@ -10,6 +10,8 @@ import {
 import styles from './TransactionListRow.module.css';
 
 export default function TransactionListRow({ concept, amount, date, type }) {
+    const prettyDate = date.toLocaleDateString('es-ES');
+
     const typeElement = type === 'income' ? (
         <div className={styles.type}>
             <FontAwesomeIcon icon={faArrowCircleDown} size="3x" />
@@ -22,7 +24,7 @@ export default function TransactionListRow({ concept, amount, date, type }) {
             Egreso
         </div>
     );
-
+    
     return (
         <div className={styles.transaction}>
             {typeElement}
@@ -34,7 +36,7 @@ export default function TransactionListRow({ concept, amount, date, type }) {
                     {amount}
                 </div>
                 <div className={styles.metadataDate}>
-                    {date}
+                    {prettyDate}
                 </div>
             </div>
             <div className={styles.options}>
