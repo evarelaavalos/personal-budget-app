@@ -12,6 +12,7 @@ export default function TransactionList({ title, caption, transactions }) {
             {transactions && transactions.map(transaction => (
                 <TransactionListRow
                     key={transaction.id}
+                    id={transaction.id}
                     concept={transaction.concept}
                     amount={transaction.amount}
                     date={transaction.date}

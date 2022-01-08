@@ -20,7 +20,7 @@
     border-radius: 3px;
 }
 
-.form > :is(input, select):is(:focus,:active) {
+.form > :is(input, select):not([disabled]):is(:focus,:active) {
     border-color: transparent;
     outline: 3px solid var(--color-primary-400);
 }

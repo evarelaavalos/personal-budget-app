@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
@@ -9,7 +10,7 @@ import {
 
 import styles from './TransactionListRow.module.css';
 
-export default function TransactionListRow({ concept, amount, date, type }) {
+export default function TransactionListRow({ id, concept, amount, date, type }) {
     const prettyDate = date.toLocaleDateString('es-ES');
 
     const typeElement = type === 'income' ? (
@@ -25,6 +26,10 @@ export default function TransactionListRow({ concept, amount, date, type }) {
         </div>
     );
     
+    const deleteTransaction = (id) => {
+        console.log(`The transaction ${id} was deleted.`);
+    }
+
     return (
         <div className={styles.transaction}>
             {typeElement}
@@ -40,8 +45,15 @@ export default function TransactionListRow({ concept, amount, date, type }) {
                 </div>
             </div>
             <div className={styles.options}>
-                <FontAwesomeIcon icon={faPen} />
-                <FontAwesomeIcon icon={faTrashAlt} />
+                <Link to={`/edit/${id}`}>
+                    <FontAwesomeIcon icon={faPen}/>
+                </Link>
+                <button
+                    className={styles.transparentButton}
+                    onClick={() => {deleteTransaction(id)}}
+                >
+                    <FontAwesomeIcon icon={faTrashAlt}/>
+                </button>
             </div>
         </div>
     )

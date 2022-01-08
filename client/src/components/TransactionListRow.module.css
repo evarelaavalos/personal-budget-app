@@ -52,13 +52,25 @@
     gap: 0.5rem;
 }
 
-.options > svg {
+.options svg {
     cursor: pointer;
     color: var(--color-neutral-300);
 }
 
-.options > svg:hover {
+.options svg:hover {
     color: var(--color-neutral-800);
+}
+
+.transparentButton {
+	padding: 0;
+	border: none;
+	font: inherit;
+    color: inherit;
+    background-color: transparent;
+}
+
+.transparentButton:focus {
+    outline: 1px dotted black;
 }
 
 @media only screen and (max-width: 61.99em) {
