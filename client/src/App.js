@@ -40,11 +40,22 @@ export default function App() {
     },
   ]);
 
+  const [types, useTypes] = useState([
+    {
+        id: 1,
+        name: 'expense',
+    },
+    {
+        id: 2,
+        name: 'income',
+    },
+  ]);
+
   return (
     <Layout>
       <Routes>
         <Route path="/" element={<Home transactions={transactions}/>} />
-        <Route path="/add" element={<Add />} />
+        <Route path="/add" element={<Add types={types} />} />
         <Route path="/expenses" element={<Expenses transactions={transactions}/>} />
         <Route path="/incomes" element={<Incomes transactions={transactions}/>} />
       </Routes>
