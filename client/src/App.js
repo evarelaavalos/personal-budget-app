@@ -17,39 +17,39 @@ export default function App() {
       concept: 'Aca compraste algo. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit provident aliquid doloribus quo mollitia praesentium architecto aut repellat rem harum.',
       amount: 739.85,
       date: moment('2021-12-20'),
-      type: 'income',
+      type: 1,
     },
     {
       id: 2,
       concept: 'Aca vendiste algo.',
       amount: 215.23,
       date: moment('2021-06-15'),
-      type: 'income',
+      type: 1,
     },
     {
       id: 3,
       concept: 'Aca te depositaron algo.',
       amount: 14725.10,
       date: moment('2021-08-10'),
-      type: 'income',
+      type: 1,
     },
     {
       id: 4,
       concept: 'Aca compraste algo.',
       amount: 8752.15,
       date: moment('1998-02-05'),
-      type: 'expense',
+      type: 2,
     },
   ]);
 
   const [types, useTypes] = useState([
     {
       id: 1,
-      name: 'expense',
+      name: 'Ingreso', // Income
     },
     {
       id: 2,
-      name: 'income',
+      name: 'Egreso', // Expense
     },
   ]);
 
@@ -62,7 +62,7 @@ export default function App() {
         <Route path="/add" element={
           <Add types={types} />
         } />
-        <Route path="/edit/:transactionId" element={
+        <Route path="/edit/:idTransaction" element={
           <Edit types={types} transactions={transactions} />
         } />
         <Route path="/expenses" element={

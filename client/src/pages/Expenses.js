@@ -1,7 +1,7 @@
 import TransactionList from '../components/TransactionList';
 
 export default function Expenses({ transactions }) {
-    const expenses = transactions.filter(transaction => transaction.type === 'expense');
+    const expenses = transactions.filter(transaction => transaction.type === 2);
 
     return (
         <TransactionList

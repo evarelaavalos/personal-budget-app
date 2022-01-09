@@ -13,13 +13,14 @@ import styles from './TransactionListRow.module.css';
 export default function TransactionListRow({ id, concept, amount, date, type }) {
     const prettyDate = date.format('DD/MM/YYYY');
 
-    const typeElement = type === 'income' ? (
+    const typeElement = type === 1 ? (
+        /* Income, Ingreso */
         <div className={styles.type}>
             <FontAwesomeIcon icon={faArrowCircleDown} size="3x" />
             Ingreso
         </div>
     ) : (
-        /* type === 'expense' */
+        /* Expense, Egreso */
         <div className={styles.type}>
             <FontAwesomeIcon icon={faArrowCircleUp} size="3x" />
             Egreso
