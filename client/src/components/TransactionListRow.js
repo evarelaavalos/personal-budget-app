@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
@@ -9,19 +10,26 @@ import {
 
 import styles from './TransactionListRow.module.css';
 
-export default function TransactionListRow({ concept, amount, date, type }) {
-    const typeElement = type === 'income' ? (
+export default function TransactionListRow({ id, concept, amount, date, type }) {
+    const prettyDate = date.format('DD/MM/YYYY');
+
+    const typeElement = type === 1 ? (
+        /* Income, Ingreso */
         <div className={styles.type}>
             <FontAwesomeIcon icon={faArrowCircleDown} size="3x" />
             Ingreso
         </div>
     ) : (
-        /* type === 'expense' */
+        /* Expense, Egreso */
         <div className={styles.type}>
             <FontAwesomeIcon icon={faArrowCircleUp} size="3x" />
             Egreso
         </div>
     );
+    
+    const deleteTransaction = (id) => {
+        console.log(`The transaction ${id} was deleted.`);
+    }
 
     return (
         <div className={styles.transaction}>
@@ -34,12 +42,19 @@ export default function TransactionListRow({ concept, amount, date, type }) {
                     {amount}
                 </div>
                 <div className={styles.metadataDate}>
-                    {date}
+                    {prettyDate}
                 </div>
             </div>
             <div className={styles.options}>
-                <FontAwesomeIcon icon={faPen} />
-                <FontAwesomeIcon icon={faTrashAlt} />
+                <Link to={`/edit/${id}`}>
+                    <FontAwesomeIcon icon={faPen}/>
+                </Link>
+                <button
+                    className={styles.transparentButton}
+                    onClick={() => {deleteTransaction(id)}}
+                >
+                    <FontAwesomeIcon icon={faTrashAlt}/>
+                </button>
             </div>
         </div>
     )

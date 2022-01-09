@@ -2,7 +2,7 @@ import TransactionList from '../components/TransactionList';
 
 import styles from './Home.module.css';
 
-export default function Home() {
+export default function Home({ transactions }) {
     return (
         <div className={styles.bankSummary}>
             <section className={styles.balance}>
@@ -17,6 +17,7 @@ export default function Home() {
             <TransactionList
                 title='Últimos Movimientos'
                 caption='Gestiona las últimas operaciones realizadas.'
+                transactions={transactions}
             />
         </div>
     )

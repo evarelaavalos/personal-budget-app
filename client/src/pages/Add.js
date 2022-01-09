@@ -1,9 +1,10 @@
-import React from 'react'
+import TransactionForm from '../components/TransactionForm';
 
-export default function Add() {
+export default function Add({ types }) {
     return (
-        <div>
-            Add Page.
-        </div>
+        <TransactionForm
+            formTitle='Agregar Transacción'
+            types={types}
+        />
     )
 }
