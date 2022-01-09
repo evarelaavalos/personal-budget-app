@@ -103,7 +103,7 @@ export default function TransactionForm({
                 onChange={handleChange}
                 disabled={disableSelector}
             >
-                {types.map((type) => (
+                {types && types.map((type) => (
                     <option value={type.id} key={type.id}>
                         {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
                     </option>
