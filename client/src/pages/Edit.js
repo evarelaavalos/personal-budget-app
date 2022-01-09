@@ -37,7 +37,7 @@ export default function Edit({
         <TransactionForm
             formTitle='Editar Transacción'
             types={types}
-            {...transaction}
+            transaction={transaction}
             disableSelector
             isPendingTransaction={isPendingTransaction}
             transactionState={transactionState}

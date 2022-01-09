@@ -9,16 +9,18 @@ import styles from './TransactionForm.module.css';
 export default function TransactionForm({
     formTitle,
     types,
-    concept = '',
-    date = moment().format('YYYY-MM-DD'),
-    amount = 0,
-    type = 1,
+    transaction = {},
     disableSelector = false,
     isPendingTransaction,
     transactionState,
     handleSubmit,
 }) {
-    const initialValues = { concept, date, amount, type };
+    const initialValues = {
+        concept: transaction?.concept ?? '',
+        date: transaction?.date ?? moment().format('YYYY-MM-DD'),
+        amount: transaction?.amount ?? 0,
+        type: transaction?.type ?? 1,
+    };
 
     // Make use of React Hooks
     const [formValues, setFormValues] = useState(initialValues);
