@@ -3,7 +3,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import TransactionForm from '../components/TransactionForm';
 
-export default function Edit({ transactions, types }) {
+export default function Edit({
+    transactions,
+    types,
+    isPendingTransaction,
+    transactionState,
+    handleSubmit
+}) {
     const params = useParams();
     const navigate = useNavigate();
     const [transaction, setTransaction] = useState(null);
@@ -31,8 +37,11 @@ export default function Edit({ transactions, types }) {
         <TransactionForm
             formTitle='Editar Transacción'
             types={types}
-            {...transaction}
+            transaction={transaction}
             disableSelector
+            isPendingTransaction={isPendingTransaction}
+            transactionState={transactionState}
+            handleSubmit={handleSubmit}
         />
     );
 }
