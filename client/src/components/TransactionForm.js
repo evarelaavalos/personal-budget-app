@@ -22,11 +22,6 @@ export default function TransactionForm({
     const [formValues, setFormValues] = useState(initialValues);
     const navigate = useNavigate();
     
-    // Log the changes made by handleChange()
-    useEffect(() => {
-        console.log(1, formValues);
-    }, [formValues]);
-    
     // Update the state when the inputs change
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -48,8 +43,6 @@ export default function TransactionForm({
             amount,
             type,
         };
-
-        console.log(response);
 
         // TODO: Set success based on response.
         const success = true;
