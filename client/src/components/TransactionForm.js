@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import moment from 'moment'
+import { useState } from 'react';
+import moment from 'moment';
 
 import Button from '../components/Button';
 import GoBackButton from '../components/GoBackButton';
@@ -15,45 +14,20 @@ export default function TransactionForm({
     amount = 0,
     type = 1,
     disableSelector = false,
+    isPendingTransaction,
+    transactionState,
+    handleSubmit,
 }) {
     const initialValues = { concept, date, amount, type };
 
     // Make use of React Hooks
     const [formValues, setFormValues] = useState(initialValues);
-    const navigate = useNavigate();
     
     // Update the state when the inputs change
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
     };
-
-    // Format the data and send a POST request
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const data = new FormData(e.target);
-        const concept = data.get('concept');
-        const date = moment(data.get('date'));
-        const amount = Number(data.get('amount'));
-        const type = Number(data.get('type'));
-
-        const response = {
-            concept,
-            date,
-            amount,
-            type,
-        };
-
-        // TODO: Set success based on response.
-        const success = true;
-        if (success) {
-            // Do something
-            navigate('/');
-            
-        } else {
-            // Do something else
-        }
-    }
 
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
@@ -110,7 +84,11 @@ export default function TransactionForm({
                 ))}
             </select>
             <div className={styles.buttons}>
-                <Button type='submit'>
+                <Button
+                    type='submit'
+                    isPendingTransaction={isPendingTransaction}
+                    transactionState={transactionState}
+                >
                     Agregar
                 </Button>
                 <GoBackButton>

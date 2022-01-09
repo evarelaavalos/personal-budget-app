@@ -27,19 +27,39 @@ export default function App() {
         <Layout>
             <Routes>
                 <Route path="/" element={
-                    <Home transactions={transactions} />
+                    <Home
+                        transactions={transactions}
+                        deleteTransaction={deleteTransaction}
+                    />
                 } />
                 <Route path="/add" element={
-                    <Add types={types} />
+                    <Add
+                        types={types}
+                        isPendingTransaction={isPendingTransaction}
+                        transactionState={transactionState}
+                        handleSubmit={submitTransaction}
+                    />
                 } />
                 <Route path="/edit/:idTransaction" element={
-                    <Edit types={types} transactions={transactions} />
+                    <Edit
+                        transactions={transactions}
+                        types={types}
+                        isPendingTransaction={isPendingTransaction}
+                        transactionState={transactionState}
+                        handleSubmit={editTransaction}
+                    />
                 } />
                 <Route path="/expenses" element={
-                    <Expenses transactions={transactions} />
+                    <Expenses
+                        transactions={transactions}
+                        deleteTransaction={deleteTransaction}
+                    />
                 } />
                 <Route path="/incomes" element={
-                    <Incomes transactions={transactions} />
+                    <Incomes
+                        transactions={transactions}
+                        deleteTransaction={deleteTransaction}
+                    />
                 } />
                 <Route path="*" element={
                     <p>There's nothing here!</p>

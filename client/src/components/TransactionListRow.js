@@ -10,7 +10,14 @@ import {
 
 import styles from './TransactionListRow.module.css';
 
-export default function TransactionListRow({ id, concept, amount, date, type }) {
+export default function TransactionListRow({
+    id,
+    concept,
+    amount,
+    date,
+    type,
+    deleteTransaction,
+}) {
     const prettyDate = date.format('DD/MM/YYYY');
 
     const typeElement = type === 1 ? (
@@ -27,10 +34,6 @@ export default function TransactionListRow({ id, concept, amount, date, type }) 
         </div>
     );
     
-    const deleteTransaction = (id) => {
-        console.log(`The transaction ${id} was deleted.`);
-    }
-
     return (
         <div className={styles.transaction}>
             {typeElement}

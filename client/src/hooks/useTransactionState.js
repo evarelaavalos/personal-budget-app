@@ -3,7 +3,7 @@ import { useState } from 'react';
 function useTransactionState() {
     const [transactionState, setTransactionState] = useState('');
 
-    const RESET_TIME_AFTER_MILLISECONDS = 1000;
+    const RESET_TIME_AFTER_MILLISECONDS = 1500;
 
     const resetState = () => {
       setTimeout(() => {

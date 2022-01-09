@@ -2,7 +2,12 @@ import TransactionListRow from './TransactionListRow';
 
 import styles from './TransactionList.module.css';
 
-export default function TransactionList({ title, caption, transactions }) {
+export default function TransactionList({
+    title,
+    caption,
+    transactions,
+    deleteTransaction
+}) {
     return (
         <section className={styles.transactions}>
             <div className={styles.header}>
@@ -17,6 +22,7 @@ export default function TransactionList({ title, caption, transactions }) {
                     amount={transaction.amount}
                     date={transaction.date}
                     type={transaction.type}
+                    deleteTransaction={deleteTransaction}
                 />
             ))}
         </section>

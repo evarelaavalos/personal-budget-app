@@ -3,10 +3,6 @@ import { transactions, types } from './fakeData';
 
 const API_ROUTE = 'http://localhost:8000';
 
-async function httpGetTotalBalance() {
-    // TODO: Once API is ready.
-}
-
 async function httpGetTypes() {
     return types;
     // TODO: Once API is ready.
@@ -17,6 +13,9 @@ async function httpGetTransactions() {
     // TODO: Once API is ready.
 }
 
+async function httpGetTotalBalance() {
+    // TODO: Once API is ready.
+}
 
 async function httpSubmitTransaction(transaction) {
     // TODO: Once API is ready.
@@ -27,12 +26,14 @@ async function httpEditTransaction(transaction) {
 }
 
 async function httpDeleteTransaction(id) {
+    console.log(`The transaction ${id} was deleted.`);
     // TODO: Once API is ready.
 }
 
 export {
     httpGetTypes,
     httpGetTransactions,
+    httpGetTotalBalance,
     httpSubmitTransaction,
     httpEditTransaction,
     httpDeleteTransaction,
