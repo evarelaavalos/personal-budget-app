@@ -1,18 +1,20 @@
 {
   "name": "personal-budget-node",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "API for the Personal Budget application.",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node src/server.js",
+    "watch": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.2"
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
