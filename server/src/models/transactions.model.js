@@ -1,17 +1,67 @@
-function getAllTransactions() {
-    // TODO: Retrieve the transactions from the database.
+const getConnection = require('../database/mysql');
+
+async function getAllTransactions() {
+    return new Promise(async (resolve, reject) => {
+        let connection = await getConnection();
+        connection.query('SELECT * FROM transactions', (err, rows) => {
+            !err ? resolve(rows) : reject(err)
+        });
+
+        connection.release();
+    });
 }
 
-function addNewTransaction(transaction) {
-    // TODO: Take a transaction and insert into database.
+async function addNewTransaction(transaction) {
+    return new Promise(async (resolve, reject) => {
+        let connection = await getConnection();
+        connection.query(
+            'INSERT INTO transactions (concept, date, amount, type) '
+            + 'VALUES (?, ?, ?, ?)',
+            [
+                transaction.concept,
+                transaction.date,
+                transaction.amount,
+                transaction.type
+            ],
+            (err, results) => {
+                !err ? resolve(results) : reject(err);
+            });
+
+        connection.release();
+    });
 }
 
-function editTransaction(transaction) {
-    // TODO: Modify the transaction in the database.
+async function editTransaction(id, transaction) {
+    return new Promise(async (resolve, reject) => {
+        let connection = await getConnection();
+        connection.query(
+            'UPDATE transactions SET '
+            + 'concept = "?", date = "?", amount = ? '
+            + 'WHERE id = ?;',
+            [
+                transaction.concept,
+                transaction.date,
+                transaction.amount,
+                id
+            ],
+            (err, results) => {
+                !err ? resolve(results) : reject(err);
+            });
+    
+        connection.release();
+    });
 }
 
-function deleteTransaction(id) {
-    // TODO: Delete transaction from the database.
+async function deleteTransaction(id) {
+    return new Promise(async (resolve, reject) => {
+        let connection = await getConnection();
+        connection.query(
+            'DELETE FROM transactions WHERE id = ?', [id], (err, results) => {
+                !err ? resolve(results) : reject(err);
+            });
+    
+        connection.release();
+    });
 }
 
 module.exports = {
