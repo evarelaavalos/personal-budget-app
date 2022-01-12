@@ -15,6 +15,12 @@
     font-weight: 500;
 }
 
+@media only screen and (max-width: 21.875em) {
+    .navItem {
+        font-size: 0.875rem;
+    }
+}
+
 @media only screen and (max-width: 29.99em) {
     .navItem {
         flex-grow: 1;

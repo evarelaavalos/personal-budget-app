@@ -35,6 +35,20 @@ export default function TransactionListRow({
         </div>
     );
     
+    const mobileTypeElement = type === 1 ? (
+        /* Income, Ingreso */
+        <div className={styles.typeMobile}>
+            <FontAwesomeIcon icon={faArrowCircleDown}/>
+            Ingreso
+        </div>
+    ) : (
+        /* Expense, Egreso */
+        <div className={styles.typeMobile}>
+            <FontAwesomeIcon icon={faArrowCircleUp}/>
+            Egreso
+        </div>
+    );
+
     const metadataAmountStyles = type === 1
         /* Income, Ingreso */
         ? styles.metadataAmount
@@ -48,6 +62,7 @@ export default function TransactionListRow({
                 {concept}
             </div>
             <div className={styles.metadata}>
+                {mobileTypeElement}
                 <div className={metadataAmountStyles}>
                     {Intl.NumberFormat().format(Math.abs(amount))}
                 </div>

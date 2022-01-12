@@ -22,7 +22,11 @@
     gap: 0.5rem;
 }
 
-.type svg {
+.typeMobile {
+    display: none;
+}
+
+:is(.type, .typeMobile) svg {
     color: var(--color-primary-500);
 }
 
@@ -75,6 +79,22 @@
 
 .transparentButton:focus {
     outline: 1px dotted black;
+}
+
+@media only screen and (max-width: 21.875em) {
+    .type {
+        display: none;
+    }
+
+    .typeMobile {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .metadata {
+        flex-grow: 1;
+    }
 }
 
 @media only screen and (max-width: 61.99em) {
