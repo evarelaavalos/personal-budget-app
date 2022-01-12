@@ -113,8 +113,7 @@ function useTransactions() {
     const deleteTransaction = async (id) => {
         const response = await httpDeleteTransaction(id);
 
-        // TODO: Set success based on response.
-        const success = false;
+        const success = response.ok;
         if (success) {
             getTransactions();
             getBalance();

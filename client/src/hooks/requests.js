@@ -40,8 +40,15 @@ async function httpEditTransaction(transaction) {
 }
 
 async function httpDeleteTransaction(id) {
-    console.log(`The transaction ${id} was deleted.`);
-    // TODO: Once API is ready.
+    try {
+        return await fetch(`${API_URL}/transactions/${id}`, {
+            method: 'delete',
+        })
+    } catch (err) {
+        return {
+            ok: false,
+        }
+    }
 }
 
 export {
