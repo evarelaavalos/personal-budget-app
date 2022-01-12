@@ -2,7 +2,7 @@ import TransactionList from '../components/TransactionList';
 
 import styles from './Home.module.css';
 
-export default function Home({ transactions, deleteTransaction }) {
+export default function Home({ balance, transactions, deleteTransaction }) {
     return (
         <div className={styles.bankSummary}>
             <section className={styles.balance}>
@@ -10,8 +10,12 @@ export default function Home({ transactions, deleteTransaction }) {
                     Balance Actual
                 </div>
                 <div className={styles.balanceAmount}>
-                    <span className={styles.balanceAmountFraction}>1.010.570</span>
-                    <sup className={styles.balanceAmountCents}>15</sup>
+                    <span className={styles.balanceAmountFraction}>
+                        {Math.trunc(balance)}
+                    </span>
+                    <sup className={styles.balanceAmountCents}>
+                        {balance.toString().split('.')[1]}
+                    </sup>
                 </div>
             </section>
             <TransactionList

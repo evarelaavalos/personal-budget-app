@@ -1,7 +1,7 @@
 // TODO: Placeholder. Delete once API is ready.
 import { transactions, types } from './fakeData';
 
-const API_ROUTE = 'http://localhost:8000';
+const API_URL = 'http://localhost:8000';
 
 async function httpGetTypes() {
     return types;
@@ -13,8 +13,10 @@ async function httpGetTransactions() {
     // TODO: Once API is ready.
 }
 
-async function httpGetTotalBalance() {
-    // TODO: Once API is ready.
+async function httpGetBalance() {
+    const response = await fetch(`${API_URL}/balance`);
+    const obj = await response.json();
+    return obj.balance;
 }
 
 async function httpSubmitTransaction(transaction) {
@@ -33,7 +35,7 @@ async function httpDeleteTransaction(id) {
 export {
     httpGetTypes,
     httpGetTransactions,
-    httpGetTotalBalance,
+    httpGetBalance,
     httpSubmitTransaction,
     httpEditTransaction,
     httpDeleteTransaction,

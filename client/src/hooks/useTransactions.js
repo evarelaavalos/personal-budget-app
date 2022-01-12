@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import {
     httpGetTransactions,
+    httpGetBalance,
     httpSubmitTransaction,
     httpEditTransaction,
     httpDeleteTransaction,
@@ -13,6 +14,7 @@ import useTransactionState from './useTransactionState';
 
 function useTransactions() {
     const navigate = useNavigate();
+    const [balance, setBalance] = useState([]);
     const [transactions, setTransactions] = useState([]);
     const [isPendingTransaction, setPendingTransaction] = useState(false);
     const {
@@ -26,9 +28,15 @@ function useTransactions() {
         setTransactions(fetchedTransactions);
     };
 
+    const getBalance = async () => {
+        const balance = await httpGetBalance();
+        setBalance(balance);
+    }
+
     // Initialize the transactions
     useEffect(() => {
-        getTransactions()
+        getTransactions();
+        getBalance();
     }, []);
 
     // Format the data and send a POST request
@@ -52,6 +60,7 @@ function useTransactions() {
         const success = false;
         if (success) {
             getTransactions();
+            getBalance();
             setTimeout(() => {
                 setPendingTransaction(false);
                 resolve();
@@ -84,6 +93,7 @@ function useTransactions() {
         const success = false;
         if (success) {
             getTransactions();
+            getBalance();
             setTimeout(() => {
                 setPendingTransaction(false);
                 resolve();
@@ -104,6 +114,7 @@ function useTransactions() {
         const success = false;
         if (success) {
             getTransactions();
+            getBalance();
             setTimeout(() => {
                 setPendingTransaction(false);
                 resolve();
@@ -118,6 +129,7 @@ function useTransactions() {
     };
 
     return {
+        balance,
         transactions,
         isPendingTransaction,
         transactionState,
