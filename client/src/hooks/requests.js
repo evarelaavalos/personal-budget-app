@@ -1,39 +1,72 @@
-// TODO: Placeholder. Delete once API is ready.
-import { transactions, types } from './fakeData';
-
-const API_ROUTE = 'http://localhost:8000';
+const API_URL = 'http://localhost:8000';
 
 async function httpGetTypes() {
-    return types;
-    // TODO: Once API is ready.
+    const response = await fetch(`${API_URL}/types`);
+    return await response.json();
 }
 
 async function httpGetTransactions() {
-    return transactions;
-    // TODO: Once API is ready.
+    const response = await fetch(`${API_URL}/transactions`);
+    const fetchedTransactions = await response.json();
+    return fetchedTransactions.sort((a, b) => {
+        return b.id - a.id;
+    });
 }
 
-async function httpGetTotalBalance() {
-    // TODO: Once API is ready.
+async function httpGetBalance() {
+    const response = await fetch(`${API_URL}/balance`);
+    const obj = await response.json();
+    return obj.balance;
 }
 
 async function httpSubmitTransaction(transaction) {
-    // TODO: Once API is ready.
+    try {
+        return await fetch(`${API_URL}/transactions`, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(transaction),
+        })
+    } catch (err) {
+        return {
+            ok: false,
+        };
+    }
 }
 
-async function httpEditTransaction(transaction) {
-    // TODO: Once API is ready.
+async function httpEditTransaction(id, transaction) {
+    try {
+        return await fetch(`${API_URL}/transactions/${id}`, {
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(transaction),
+        })
+    } catch (err) {
+        return {
+            ok: false,
+        };
+    }
 }
 
 async function httpDeleteTransaction(id) {
-    console.log(`The transaction ${id} was deleted.`);
-    // TODO: Once API is ready.
+    try {
+        return await fetch(`${API_URL}/transactions/${id}`, {
+            method: 'delete',
+        })
+    } catch (err) {
+        return {
+            ok: false,
+        }
+    }
 }
 
 export {
     httpGetTypes,
     httpGetTransactions,
-    httpGetTotalBalance,
+    httpGetBalance,
     httpSubmitTransaction,
     httpEditTransaction,
     httpDeleteTransaction,

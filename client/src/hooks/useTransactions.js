@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import moment from 'moment';
 
 import {
     httpGetTransactions,
+    httpGetBalance,
     httpSubmitTransaction,
     httpEditTransaction,
     httpDeleteTransaction,
@@ -13,6 +13,7 @@ import useTransactionState from './useTransactionState';
 
 function useTransactions() {
     const navigate = useNavigate();
+    const [balance, setBalance] = useState([]);
     const [transactions, setTransactions] = useState([]);
     const [isPendingTransaction, setPendingTransaction] = useState(false);
     const {
@@ -26,9 +27,15 @@ function useTransactions() {
         setTransactions(fetchedTransactions);
     };
 
+    const getBalance = async () => {
+        const balance = await httpGetBalance();
+        setBalance(balance);
+    }
+
     // Initialize the transactions
     useEffect(() => {
-        getTransactions()
+        getTransactions();
+        getBalance();
     }, []);
 
     // Format the data and send a POST request
@@ -37,8 +44,8 @@ function useTransactions() {
         setPendingTransaction(true);
         const data = new FormData(e.target);
         const concept = data.get('concept');
-        const date = moment(data.get('date'));
-        const amount = Number(data.get('amount'));
+        const date = data.get('date');
+        const amount = Math.abs(data.get('amount'));
         const type = Number(data.get('type'));
 
         const response = await httpSubmitTransaction({
@@ -48,10 +55,10 @@ function useTransactions() {
             type,
         });
 
-        // TODO: Set success based on response.
-        const success = false;
+        const success = response.ok;
         if (success) {
             getTransactions();
+            getBalance();
             setTimeout(() => {
                 setPendingTransaction(false);
                 resolve();
@@ -69,21 +76,25 @@ function useTransactions() {
     const editTransaction = async (e) => {
         e.preventDefault();
         setPendingTransaction(true);
+
+        // TODO: find another way to get the id
+        const id = Number(...e.target.baseURI.split('/').slice(-1));
+
         const data = new FormData(e.target);
         const concept = data.get('concept');
-        const date = moment(data.get('date'));
-        const amount = Number(data.get('amount'));
+        const date = data.get('date');
+        const amount = Math.abs(data.get('amount'));
 
-        const response = await httpEditTransaction({
+        const response = await httpEditTransaction(id, {
             concept,
             date,
             amount,
         });
 
-        // TODO: Set success based on response.
-        const success = false;
+        const success = response.ok;
         if (success) {
             getTransactions();
+            getBalance();
             setTimeout(() => {
                 setPendingTransaction(false);
                 resolve();
@@ -100,10 +111,10 @@ function useTransactions() {
     const deleteTransaction = async (id) => {
         const response = await httpDeleteTransaction(id);
 
-        // TODO: Set success based on response.
-        const success = false;
+        const success = response.ok;
         if (success) {
             getTransactions();
+            getBalance();
             setTimeout(() => {
                 setPendingTransaction(false);
                 resolve();
@@ -118,6 +129,7 @@ function useTransactions() {
     };
 
     return {
+        balance,
         transactions,
         isPendingTransaction,
         transactionState,

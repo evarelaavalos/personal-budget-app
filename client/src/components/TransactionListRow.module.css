@@ -42,6 +42,10 @@
     content: '$\0000a0';
 }
 
+.metadataAmountNegative::before {
+    content: '-\0000a0$\0000a0';
+}
+
 .metadataDate {
     color: var(--color-neutral-600);
     font-size: 0.875rem;

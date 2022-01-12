@@ -24,7 +24,7 @@ export default function Edit({
         if (transactionFinded) {
             setTransaction({
                 concept: transactionFinded.concept,
-                date: transactionFinded.date.format('YYYY-MM-DD'),
+                date: transactionFinded.date,
                 amount: transactionFinded.amount,
                 type: transactionFinded.type,
             })

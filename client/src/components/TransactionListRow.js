@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import moment from 'moment';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
@@ -18,7 +19,7 @@ export default function TransactionListRow({
     type,
     deleteTransaction,
 }) {
-    const prettyDate = date.format('DD/MM/YYYY');
+    const prettyDate = moment(date).format('DD/MM/YYYY');
 
     const typeElement = type === 1 ? (
         /* Income, Ingreso */
@@ -34,6 +35,12 @@ export default function TransactionListRow({
         </div>
     );
     
+    const metadataAmountStyles = type === 1
+        /* Income, Ingreso */
+        ? styles.metadataAmount
+        /* Expense, Egreso */
+        : `${styles.metadataAmount} ${styles.metadataAmountNegative}`
+
     return (
         <div className={styles.transaction}>
             {typeElement}
@@ -41,8 +48,8 @@ export default function TransactionListRow({
                 {concept}
             </div>
             <div className={styles.metadata}>
-                <div className={styles.metadataAmount}>
-                    {amount}
+                <div className={metadataAmountStyles}>
+                    {Math.abs(amount)}
                 </div>
                 <div className={styles.metadataDate}>
                     {prettyDate}

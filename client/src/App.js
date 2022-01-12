@@ -13,6 +13,7 @@ import Incomes from './pages/Incomes';
 
 export default function App() {
     const {
+        balance,
         transactions,
         isPendingTransaction,
         transactionState,
@@ -28,6 +29,7 @@ export default function App() {
             <Routes>
                 <Route path="/" element={
                     <Home
+                        balance={balance}
                         transactions={transactions}
                         deleteTransaction={deleteTransaction}
                     />

@@ -18,7 +18,7 @@ export default function TransactionForm({
     const initialValues = {
         concept: transaction?.concept ?? '',
         date: transaction?.date ?? moment().format('YYYY-MM-DD'),
-        amount: transaction?.amount ?? 0,
+        amount: Math.abs(transaction?.amount) ?? 0,
         type: transaction?.type ?? 1,
     };
 
