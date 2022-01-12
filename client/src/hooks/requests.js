@@ -1,16 +1,16 @@
-// TODO: Placeholder. Delete once API is ready.
-import { transactions, types } from './fakeData';
-
 const API_URL = 'http://localhost:8000';
 
 async function httpGetTypes() {
-    return types;
-    // TODO: Once API is ready.
+    const response = await fetch(`${API_URL}/types`);
+    return await response.json();
 }
 
 async function httpGetTransactions() {
-    return transactions;
-    // TODO: Once API is ready.
+    const response = await fetch(`${API_URL}/transactions`);
+    const fetchedTransactions = await response.json();
+    return fetchedTransactions.sort((a, b) => {
+        return b.id - a.id;
+    });
 }
 
 async function httpGetBalance() {
