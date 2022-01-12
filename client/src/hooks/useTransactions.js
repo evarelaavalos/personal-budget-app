@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import moment from 'moment';
 
 import {
     httpGetTransactions,
@@ -46,12 +45,8 @@ function useTransactions() {
         const data = new FormData(e.target);
         const concept = data.get('concept');
         const date = data.get('date');
+        const amount = Math.abs(data.get('amount'));
         const type = Number(data.get('type'));
-        const amount = type === 1
-            /* Income, Ingreso */
-            ? Math.abs(Number(data.get('amount')))
-            /* Expense, Egreso */
-            : -Math.abs(Number(data.get('amount')));
 
         const response = await httpSubmitTransaction({
             concept,
@@ -88,12 +83,7 @@ function useTransactions() {
         const data = new FormData(e.target);
         const concept = data.get('concept');
         const date = data.get('date');
-        const type = Number(data.get('type'));
-        const amount = type === 1
-            /* Income, Ingreso */
-            ? Math.abs(Number(data.get('amount')))
-            /* Expense, Egreso */
-            : -Math.abs(Number(data.get('amount')));
+        const amount = Math.abs(data.get('amount'));
 
         const response = await httpEditTransaction(id, {
             concept,
