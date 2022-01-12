@@ -35,8 +35,20 @@ async function httpSubmitTransaction(transaction) {
     }
 }
 
-async function httpEditTransaction(transaction) {
-    // TODO: Once API is ready.
+async function httpEditTransaction(id, transaction) {
+    try {
+        return await fetch(`${API_URL}/transactions/${id}`, {
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(transaction),
+        })
+    } catch (err) {
+        return {
+            ok: false,
+        };
+    }
 }
 
 async function httpDeleteTransaction(id) {
