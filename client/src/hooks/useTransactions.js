@@ -45,9 +45,13 @@ function useTransactions() {
         setPendingTransaction(true);
         const data = new FormData(e.target);
         const concept = data.get('concept');
-        const date = moment(data.get('date'));
-        const amount = Number(data.get('amount'));
+        const date = data.get('date');
         const type = Number(data.get('type'));
+        const amount = type === 1
+            /* Income, Ingreso */
+            ? Math.abs(Number(data.get('amount')))
+            /* Expense, Egreso */
+            : -Math.abs(Number(data.get('amount')));
 
         const response = await httpSubmitTransaction({
             concept,
@@ -56,8 +60,7 @@ function useTransactions() {
             type,
         });
 
-        // TODO: Set success based on response.
-        const success = false;
+        const success = response.ok;
         if (success) {
             getTransactions();
             getBalance();

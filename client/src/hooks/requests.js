@@ -20,7 +20,19 @@ async function httpGetBalance() {
 }
 
 async function httpSubmitTransaction(transaction) {
-    // TODO: Once API is ready.
+    try {
+        return await fetch(`${API_URL}/transactions`, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(transaction),
+        })
+    } catch (err) {
+        return {
+            ok: false,
+        };
+    }
 }
 
 async function httpEditTransaction(transaction) {
