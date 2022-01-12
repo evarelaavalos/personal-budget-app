@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import moment from 'moment';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
@@ -18,7 +19,7 @@ export default function TransactionListRow({
     type,
     deleteTransaction,
 }) {
-    const prettyDate = date.format('DD/MM/YYYY');
+    const prettyDate = moment(date).format('DD/MM/YYYY');
 
     const typeElement = type === 1 ? (
         /* Income, Ingreso */

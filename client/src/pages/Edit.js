@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -24,7 +25,7 @@ export default function Edit({
         if (transactionFinded) {
             setTransaction({
                 concept: transactionFinded.concept,
-                date: transactionFinded.date.format('YYYY-MM-DD'),
+                date: moment(transactionFinded.date).format('YYYY-MM-DD'),
                 amount: transactionFinded.amount,
                 type: transactionFinded.type,
             })
