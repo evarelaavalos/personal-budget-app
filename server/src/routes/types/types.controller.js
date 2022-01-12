@@ -1,8 +1,8 @@
 const { getAllTypes } = require('../../models/types.model.js');
 
-function httpGetAllTypes(req, res) {
-    // TODO: Once the database it's created.
-    // Retrieve the data and reply with the corresponding Status Code.
+async function httpGetAllTypes(req, res) {
+    const types = await getAllTypes();
+    return res.status(200).json(types);
 }
 
 module.exports = {

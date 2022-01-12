@@ -1,8 +1,8 @@
 const { getBalance } = require('../../models/balance.model');
 
-function httpGetBalance(req, res) {
-    // TODO: Once the database it's created.
-    // Retrieve the data and reply with the corresponding Status Code.
+async function httpGetBalance(req, res) {
+    const balance = await getBalance();
+    return res.status(200).json(balance);
 }
 
 module.exports = {

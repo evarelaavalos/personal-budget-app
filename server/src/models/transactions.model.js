@@ -23,8 +23,8 @@ async function addNewTransaction(transaction) {
                 transaction.amount,
                 transaction.type
             ],
-            (err, results) => {
-                !err ? resolve(results) : reject(err);
+            (err, result) => {
+                !err ? resolve(result) : reject(err);
             });
 
         connection.release();
@@ -36,7 +36,7 @@ async function editTransaction(id, transaction) {
         let connection = await getConnection();
         connection.query(
             'UPDATE transactions SET '
-            + 'concept = "?", date = "?", amount = ? '
+            + 'concept = ?, date = ?, amount = ? '
             + 'WHERE id = ?;',
             [
                 transaction.concept,
@@ -44,8 +44,8 @@ async function editTransaction(id, transaction) {
                 transaction.amount,
                 id
             ],
-            (err, results) => {
-                !err ? resolve(results) : reject(err);
+            (err, result) => {
+                !err ? resolve(result) : reject(err);
             });
     
         connection.release();
@@ -56,10 +56,22 @@ async function deleteTransaction(id) {
     return new Promise(async (resolve, reject) => {
         let connection = await getConnection();
         connection.query(
-            'DELETE FROM transactions WHERE id = ?', [id], (err, results) => {
-                !err ? resolve(results) : reject(err);
+            'DELETE FROM transactions WHERE id = ?', [id], (err, result) => {
+                !err ? resolve(result.affectedRows) : reject(err);
             });
     
+        connection.release();
+    });
+}
+
+async function existsTransactionWithId(id) {
+    return new Promise(async (resolve, reject) => {
+        let connection = await getConnection();
+        connection.query('SELECT 1 FROM transactions WHERE id = ?', [id],
+        (err, result) => {
+            !err ? resolve(...result) : reject(err)
+        });
+
         connection.release();
     });
 }
@@ -69,4 +81,5 @@ module.exports = {
     addNewTransaction,
     editTransaction,
     deleteTransaction,
+    existsTransactionWithId,
 };
