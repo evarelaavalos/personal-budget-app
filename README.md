@@ -1,70 +1,120 @@
-# Getting Started with Create React App
+# Personal Budget App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+- [Overview](#overview)
+- [Usage](#usage)
+  - [Prerequisites](#prerequisites)
+  - [Setup](#setup)
+- [Database](#database)
+- [API Endpoints](#api)
 
-In the project directory, you can run:
+## Overview <a id="overview"></a>
 
-### `npm start`
+![preview of the project](docs/preview.jpeg)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This is a project build for Alkemy following these [requirements](/docs/ChallengeFullstack-JavaScript.rev2.pdf) and was created with these technologies:
+- **Frontend**: 
+  - **Framework**: This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  - **Styles**: For the styling it uses ***plain CSS*** within ***CSS modules***.
+  - **Icons**: The icons are from [Font Awesome Icons](https://fontawesome.com/).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Backend**:
+  - **Framework**: Is build in ***Node.js*** using the ***Express.js*** Framework.
+  - **Database**: For the data uses the ***MySQL*** database. No ORM.
 
-### `npm test`
+## Usage <a id="usage"></a>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites <a id="prerequisites"></a>
 
-### `npm run build`
+To make use of this project you need to have installed these programs in your system:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. [MySql Community](https://dev.mysql.com/downloads/)
+2. [Node.js](https://nodejs.org/en/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Setup <a id="setup"></a>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Git clone this project in your machine:
 
-### `npm run eject`
+```bash
+git clone https://github.com/evarelaavalos/personal-budget-app
+cd personal-budget-app
+```
+2. Install the dependencies. For both the Frontend and the Backend.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm install --prefix client
+npm install --prefix server
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Open MySQL, either the Workbench or the command prompt, and run the `initsb.sql` located in the folder `./server/src/database/`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. Complete the config file `mysql.js` with the settings of your local database. Is located in the folder `./server/src/database/`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```javascript
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: 'COMPLETE_WITH_YOUR_PASSWORD',
+    port: 'ADD_YOUR_PORT_NUMBER',
+    database: 'personal_budget_db',
+    ...
+});
+```
 
-## Learn More
+5. Run both applications in parallel:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm run client
+# in other terminal instance
+npm run server
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+6. Open the browser and go to `http://localhost:3000` to start using the project.
 
-### Code Splitting
+## Database <a id="database"></a>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![diagram of the database](docs/database.jpg)
 
-### Analyzing the Bundle Size
+## API Endpoints <a id="api"></a>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### `GET /transactions`
 
-### Making a Progressive Web App
+You can retrieve all the transactions made in the application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### `POST /transactions`
 
-### Advanced Configuration
+To register a new transaction, send a POST request with a `body` like the next example:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```json
+{
+    "concept": "Compra de un lavarropas Dream",
+    "date": "2020-12-02",
+    "amount": 64999.99,
+    "type": 1
+}
+```
 
-### Deployment
+### `PUT /transactions/{id}`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+You can update an already existing transaction using the PUT request. It accepts a `body` similar to the POST request, except you cannot change the `type` field.
 
-### `npm run build` fails to minify
+```json
+{
+    "concept": "Compra de un lavarropas con descuento",
+    "date": "2020-12-02",
+    "amount": 53200.99
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### `DELETE /transactions/{id}`
+
+You can delete a specific transaction.
+
+### `GET /types`
+
+You can retrieve all types of transactions available.
+
+### `GET /balance`
+
+Retrieves the current account balance of the application.
