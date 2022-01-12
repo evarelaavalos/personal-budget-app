@@ -49,7 +49,7 @@ export default function TransactionListRow({
             </div>
             <div className={styles.metadata}>
                 <div className={metadataAmountStyles}>
-                    {Math.abs(amount)}
+                    {Intl.NumberFormat().format(Math.abs(amount))}
                 </div>
                 <div className={styles.metadataDate}>
                     {prettyDate}

@@ -27,6 +27,10 @@
     content: '$\0000a0';
 }
 
+.balanceAmountFractionNegative::before {
+    content: '-\0000a0$\0000a0';
+}
+
 .balanceAmountCents {
     font-size: 0.875rem;
 }
