@@ -2,10 +2,10 @@ const mysql = require('mysql');
 const moment = require('moment');
 
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'COMPLETE_WITH_YOUR_PASSWORD',
-    port: 'ADD_YOUR_PORT_NUMBER',
+    host: process.env.MYSQL_HOST || 'localhost',
+    user: process.env.MYSQL_USER || 'root',
+    password: process.env.MYSQL_PASSWORD,
+    port: process.env.MYSQL_PORT || 3306,
     database: 'personal_budget_db',
     typeCast: function (field, next) {
         if (field.type === 'DATE') {
