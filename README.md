@@ -34,43 +34,56 @@ To make use of this project you need to have installed these programs in your sy
 
 ### Setup <a id="setup"></a>
 
-1. Git clone this project in your machine:
+#### 1. Git clone this project in your machine.
 
 ```bash
 git clone https://github.com/evarelaavalos/personal-budget-app
 cd personal-budget-app
 ```
-2. Install the dependencies. For both the Frontend and the Backend.
+#### 2. Install the dependencies.
 
 ```bash
-npm install --prefix client
-npm install --prefix server
+# In the root directory of the project
+npm install
 ```
 
-3. Open MySQL, either the Workbench or the command prompt, and run the `initsb.sql` located in the folder `./server/src/database/`.
+#### 3. Run the `initdb.sql` file in MySQL.
 
-4. Complete the config file `mysql.js` with the settings of your local database. Is located in the folder `./server/src/database/`.
+Located in the folder `./server/src/database/`.
 
-```javascript
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'COMPLETE_WITH_YOUR_PASSWORD',
-    port: 'ADD_YOUR_PORT_NUMBER',
-    database: 'personal_budget_db',
-    ...
-});
-```
+#### 4. Create a `.env` file in the `/server` directory of your project.
 
-5. Run both applications in parallel:
+Copy paste the following example into the file:
 
 ```bash
-npm run client
-# in other terminal instance
-npm run server
+# .env file
+#
+# Add environment-specific variables on new lines in the form of NAME=VALUE
+#
+HOST=8000
+MYSQL_HOST=localhost
+MYSQL_USER=root
+MYSQL_PASSWORD=s1mpl3
+MYSQL_PORT=3306
 ```
 
-6. Open the browser and go to `http://localhost:3000` to start using the project.
+The `HOST` variable is optional. By default its value is `8000`.
+
+Set the variables with the data of your own database:
+
+- `MYSQL_HOST`: The hostname of the database you are connecting to. (Default: `localhost`)
+- `MYSQL_USER`: The MySQL user to authenticate as. (Default: `root`)
+- `MYSQL_PASSWORD` (**required**): The password of that MySQL user.
+- `MYSQL_PORT`: The port number to connect to. (Default: `3306`)
+
+#### 5. Run the server.
+
+```bash
+# In the root directory of the project
+npm run deploy
+```
+
+#### 6. Open the browser on the assigned port: `http://localhost:8000`
 
 ## Database <a id="database"></a>
 
