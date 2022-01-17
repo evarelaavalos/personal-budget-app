@@ -24,6 +24,9 @@ client/yarn-debug.log*
 client/yarn-error.log*
 
 # Node files
+# Delivered React.js App
+server/public
+
 # Logs
 server/logs
 server/*.log

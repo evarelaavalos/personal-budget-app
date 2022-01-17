@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
 
@@ -14,9 +15,14 @@ app.use(cors({
 
 app.use(express.json());
 app.use(morgan('combined'));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/balance', balanceRouter);
 app.use('/transactions', transactionRouter);
 app.use('/types', typesRouter);
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+});
 
 module.exports = app;
