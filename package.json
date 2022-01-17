@@ -4,10 +4,11 @@
   "description": "A personal budget application using React + Node.",
   "main": "index.js",
   "scripts": {
-    "install-server": "npm install --prefix server",
+    "install": "npm run install-client && npm run install-server",
     "install-client": "npm install --prefix client",
-    "server": "npm run watch --prefix server",
+    "install-server": "npm install --prefix server",
     "client": "npm start --prefix client",
+    "server": "npm run watch --prefix server",
     "deploy": "npm run build --prefix client && npm start --prefix server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
